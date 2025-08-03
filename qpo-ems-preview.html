@@ -2,6 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>qpo EMS Preview</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +20,11 @@
   --qpo-radius:20px;
   --qpo-font:"Inter",system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
 }
-body{background:#0f0f0f;margin:0;padding:0;}
+body{
+  background:#0f0f0f;
+  margin:0;
+  padding:0;
+}
 .emsPreview{
   background:var(--qpo-bg);
   color:#fff;
@@ -27,109 +32,251 @@ body{background:#0f0f0f;margin:0;padding:0;}
   max-width:1200px;
   width:100%;
   margin:0 auto;
-  padding:1rem;
-  border-radius:var(--qpo-radius);
+  padding:2.5rem 1rem 2rem;
+  border-radius:20px;
   overflow:hidden;
   box-sizing:border-box;
 }
-.qpo-title{
+.header-wrap{
   text-align:center;
-  font-size:1.6rem;
-  font-weight:600;
-  margin:20px 0 24px;
+  margin:0 0 32px;
 }
-@media(max-width:1024px){.qpo-emsGraph{display:none;}}
+.header-wrap .title{
+  font-size:1.85rem;
+  font-weight:600;
+  margin:0;
+  line-height:1.1;
+}
+.cta-title{color:#fff;}
+.header-wrap .cta-title{
+  font-size:1.85rem;
+  font-weight:600;
+  margin:8px 0 0;
+  line-height:1.1;
+  cursor:pointer;
+  display:inline-block;
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:8px;
+  transition: background .2s ease;
+}
+.header-wrap .cta-title:hover{
+  background: rgba(255,255,255,0.08);
+}
 .qpo-emsGraph{
   display:flex;
-  gap:12px;
+  gap:32px;
+  position:relative;
+  align-items:flex-start;
+  flex-wrap:nowrap;
 }
-.qpo-chart{
+.chart-container{
   flex:1;
-  height:340px;
+  min-width:0;
+  max-width:950px;
+  display:flex;
+  gap:32px;
+  margin:0 auto;
+  align-items:stretch;
 }
-.qpo-bar{
-  background:var(--qpo-bar);
-  padding:12px;
-  border-radius:var(--qpo-radius);
+.graph-area{
+  flex:1;
+  min-width:0;
   display:flex;
   flex-direction:column;
-  gap:6px;
-  width:120px;
+}
+.qpo-chart{
+  width:100%;
+  height:340px;
+  display:block;
+}
+.qpo-building-wrapper{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  width:160px;
+  flex-shrink:0;
 }
 .qpo-building{
   background:transparent;
   border:none;
   color:#fff;
-  padding:8px 12px;
+  padding:12px 14px;
   border-radius:12px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  font-size:0.65rem;
+  font-size:0.75rem;
   cursor:pointer;
-  gap:4px;
+  gap:6px;
   transition:.25s ease;
   width:100%;
+  box-sizing:border-box;
 }
-.qpo-building svg{width:26px;height:26px;margin:0;}
+.qpo-building svg{width:28px;height:28px;margin:0;}
 .qpo-building.qpo-active{
   background:var(--qpo-teal);
   color:#000;
 }
-.qpo-controls{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:0.8rem;align-items:flex-start;}
-.qpo-slider-full{flex:1;min-width:220px;display:flex;flex-direction:column;gap:6px;}
-.qpo-step-labels{display:flex;justify-content:space-between;font-size:0.6rem;margin-top:4px;letter-spacing:0.5px;}
+.qpo-bottom{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+  margin-top:30px;
+}
+.qpo-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:28px;
+  font-size:0.8rem;
+  align-items:flex-start;
+  max-width:950px;
+  width:100%;
+  justify-content:center;
+}
+.qpo-slider-full{
+  flex:1;
+  min-width:220px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.qpo-step-labels{
+  display:flex;
+  justify-content:space-between;
+  font-size:0.6rem;
+  margin-top:4px;
+  letter-spacing:0.5px;
+}
 input[type=range].qpo-range{
   -webkit-appearance:none;
   width:100%;
-  height:12px;
-  border-radius:6px;
+  height:14px;
+  border-radius:7px;
   background:rgba(255,255,255,0.07);
   outline:none;
 }
 input[type=range].qpo-range::-webkit-slider-thumb{
   -webkit-appearance:none;
   appearance:none;
-  width:24px;
-  height:24px;
+  width:30px;
+  height:30px;
   border-radius:50%;
   background:var(--qpo-green);
-  border:3px solid #fff;
+  border:4px solid #fff;
   cursor:pointer;
-  box-shadow:0 0 10px rgba(76,175,80,0.6);
+  box-shadow:0 0 15px rgba(76,175,80,0.75);
+  margin-top:-8px;
 }
 input[type=range].qpo-range::-moz-range-thumb{
-  width:24px;
-  height:24px;
+  width:30px;
+  height:30px;
   border-radius:50%;
   background:var(--qpo-green);
-  border:3px solid #fff;
+  border:4px solid #fff;
   cursor:pointer;
-  box-shadow:0 0 10px rgba(76,175,80,0.6);
+  box-shadow:0 0 15px rgba(76,175,80,0.75);
 }
-.qpo-tariff-wrapper{min-width:160px;display:flex;flex-direction:column;gap:4px;}
-.qpo-tariff-label{font-size:0.75rem;margin-bottom:2px;font-weight:600;}
-.qpo-tariff-select{
-  background:#1e1e1e;
-  border:none;
-  border-radius:8px;
-  padding:10px;
-  color:#fff;
-  font-size:0.9rem;
-  appearance:none;
-}
-.qpo-summary{
-  background:#1e1e1e;
-  padding:10px 12px;
-  margin-top:12px;
-  border-radius:12px;
+.qpo-tariff-wrapper{
+  min-width:180px;
   display:flex;
   flex-direction:column;
-  gap:6px;
-  font-size:0.9rem;
+  gap:4px;
 }
-.qpo-summary-line{display:flex;justify-content:space-between;align-items:center;gap:6px;}
-.qpo-winst{font-weight:600;position:relative;}
+.qpo-tariff-label{
+  font-size:0.75rem;
+  margin-bottom:2px;
+  font-weight:600;
+}
+/* custom dropdown */
+.custom-select {
+  position: relative;
+  background: linear-gradient(135deg,#1f2733,#1e1e1e);
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-width: 180px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  outline: none;
+}
+.custom-select .selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+.custom-select .arrow {
+  margin-left: 8px;
+  font-size: 0.8em;
+  line-height: 1;
+}
+.custom-select .options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #1e1e1e;
+  border: 2px solid #fff;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  margin-top: -2px;
+  display: none;
+  z-index: 10;
+  max-height: 220px;
+  overflow: auto;
+}
+.custom-select.open .options {
+  display: block;
+}
+.custom-select .option {
+  padding: 12px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.custom-select .option:hover,
+.custom-select .option.selected {
+  background: rgba(255,255,255,0.1);
+}
+
+.qpo-summary{
+  background:#1e1e1e;
+  padding:14px 16px;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-size:0.95rem;
+  width:100%;
+  max-width:950px;
+}
+.qpo-summary-line{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:6px;
+  padding:10px 0;
+}
+.qpo-summary-line:not(:last-child){
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.qpo-summary-line > div:first-child{
+  flex:1;
+}
+.qpo-summary-line > div:last-child{
+  flex:0;
+  text-align:right;
+}
+.qpo-winst{
+  font-weight:600;
+  position:relative;
+}
 .qpo-winst[data-qpo-tooltip]:hover::after{
   content:attr(data-qpo-tooltip);
   position:absolute;
@@ -143,92 +290,211 @@ input[type=range].qpo-range::-moz-range-thumb{
   z-index:10;
 }
 .qpo-meeting-embed{
-  background:#1e1e1e;
-  border-radius:20px;
   overflow:hidden;
   position:relative;
-  min-height:380px;
-  margin-top:16px;
-}
-.meetings-iframe-container,
-.meetings-iframe-container iframe{
+  min-height:420px;
+  width:100%;
+  max-width:900px;
+  max-height:600px;
   border-radius:20px;
 }
-.qpo-small{font-size:0.65rem;color:#bbb;margin-top:6px;line-height:1.1;}
-.qpo-modal{display:none;background:#222;padding:14px;margin-top:14px;border-radius:10px;text-align:center;font-size:0.9rem;}
+.qpo-small-wrapper{
+  max-width:950px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+.qpo-small{
+  font-size:0.65rem;
+  color:#bbb;
+  line-height:1.2;
+  text-align:center;
+  margin:0;
+}
+.cta-wrap{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:4px;
+}
+.cta-button{
+  background: var(--qpo-teal);
+  border: none;
+  padding:12px 22px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  color:#000;
+  font-size:0.95rem;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  box-shadow:0 8px 30px rgba(0,187,212,0.35);
+  transition:transform .1s ease;
+}
+.cta-button:hover{transform:scale(1.02);}
+.cta-button:active{transform:scale(.98);}
+
+.qpo-modal{
+  display:none;
+  background:#222;
+  padding:14px;
+  margin-top:14px;
+  border-radius:10px;
+  text-align:center;
+  font-size:0.9rem;
+  max-width:950px;
+  width:100%;
+}
 .qpo-modal.qpo-show{display:block;}
+
+/* Forceert afgeronde hoeken op de HubSpot meeting card */
+.ColoredCard__StyledCardContainer-sc-1vuk6dr-0.dohtlL {
+  border-radius:20px !important;
+  overflow: hidden;
+}
+.meetings-iframe-container,
+.meetings-iframe-container iframe {
+  border-radius:20px;
+  height:600px;
+}
+
+/* .bzKZet zoals gevraagd */
+.bzKZet {
+  inline-size:101%;
+}
+
+/* kleine responsive fallback */
+@media (max-width: 1100px){
+  .qpo-emsGraph{flex-direction:column;}
+  .chart-container{flex-direction:column;}
+  .qpo-building-wrapper{flex-direction:row;overflow-x:auto;width:auto;}
+  .qpo-building{flex:1;min-width:100px;}
+}
+@media (max-width:600px){
+  .emsPreview{padding:1.5rem 0.75rem;}
+  .header-wrap .title{font-size:1.5rem;}
+  .header-wrap .cta-title{font-size:1.5rem;}
+  .qpo-emsGraph{gap:16px;}
+  .chart-container{gap:16px;}
+  .qpo-chart{height:260px;}
+  .qpo-building-wrapper{gap:8px;}
+  .qpo-building{padding:10px;font-size:0.7rem;}
+  .qpo-controls{gap:16px;}
+  .qpo-summary{padding:12px;}
+}
 </style>
+</head>
+<body>
 <div class="emsPreview" data-intro="true" id="qpoRoot">
-  <div class="qpo-title">Ontdek besparing met EMS</div>
+  <div class="header-wrap">
+    <div class="title">Ontdek besparing met EMS</div>
+  </div>
 
   <div class="qpo-emsGraph">
-    <canvas id="qpoChart" class="qpo-chart"></canvas>
-    <div id="qpoBar" class="qpo-bar">
-      <button class="qpo-building qpo-active" data-type="Woning" aria-label="Woning">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-        <span>Woning</span>
-      </button>
-      <button class="qpo-building" data-type="Winkeltje" aria-label="Winkeltje">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
-        <span>Winkeltje</span>
-      </button>
-      <button class="qpo-building" data-type="Restaurant" aria-label="Restaurant">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11,9H9V2H7V9H5V2H3V9C3,11.12 4.66,12.84 6.75,12.97V22H9.25V12.97C11.34,12.84 13,11.12 13,9V2H11V9M16,6V14H18.5V22H21V2C18.24,2 16,4.24 16,6Z"/></svg>
-        <span>Restaurant</span>
-      </button>
-      <button class="qpo-building" data-type="Kantoorgebouw" aria-label="Kantoorgebouw">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/></svg>
-        <span>Kantoorgebouw</span>
-      </button>
-      <button class="qpo-building" data-type="Winkelcentrum" aria-label="Winkelcentrum">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
-        <span>Winkelcentrum</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="qpo-controls">
-    <div class="qpo-slider-full">
-      <div style="font-weight:600;margin-bottom:4px;">Optimalisatie niveau</div>
-      <div class="qpo-slider-wrapper">
-        <input type="range" id="qpoStep" class="qpo-range" min="0" max="5" value="0">
+    <div class="chart-container">
+      <div class="graph-area">
+        <canvas id="qpoChart" class="qpo-chart"></canvas>
       </div>
-      <div class="qpo-step-labels">
-        <div>Geen EMS</div>
-        <div>Volledige optimalisatie</div>
+      <div class="qpo-building-wrapper">
+        <button class="qpo-building qpo-active" data-type="Woning" aria-label="Woning">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+          </svg>
+          <div>Woning</div>
+        </button>
+                <button class="qpo-building" data-type="Restaurant" aria-label="Restaurant">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11,9H9V2H7V9H5V2H3V9C3,11.12 4.66,12.84 6.75,12.97V22H9.25V12.97C11.34,12.84 13,11.12 13,9V2H11V9M16,6V14H18.5V22H21V2C18.24,2 16,4.24 16,6Z"/>
+          </svg>
+          <div>Restaurant</div>
+        </button>
+        <button class="qpo-building" data-type="Kantoorgebouw" aria-label="Kantoorgebouw">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/>
+          </svg>
+          <div>Kantoorgebouw</div>
+        </button>
+        <button class="qpo-building" data-type="Winkelcentrum" aria-label="Winkelcentrum">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/>
+          </svg>
+          <div>Winkelcentrum</div>
+        </button>
       </div>
     </div>
-    <div class="qpo-tariff-wrapper">
-      <div class="qpo-tariff-label">Energiecontract:</div>
-      <select id="qpoTariff" class="qpo-tariff-select">
-        <option value="lineair">Lineair</option>
-        <option value="dynamisch">Dynamisch</option>
-        <option value="capaciteit">Capaciteitstarief</option>
-      </select>
+  </div>
+
+  <div class="qpo-bottom">
+    <div class="qpo-controls">
+      <div class="qpo-slider-full">
+        <div style="font-weight:600;margin-bottom:4px;">Optimalisatie niveau</div>
+        <div class="qpo-slider-wrapper">
+          <input type="range" id="qpoStep" class="qpo-range" min="0" max="5" value="0">
+        </div>
+        <div class="qpo-step-labels">
+          <div>Geen EMS</div>
+          <div>Volledige optimalisatie</div>
+        </div>
+      </div>
+      <div class="qpo-tariff-wrapper">
+        <div class="qpo-tariff-label">Energiecontract:</div>
+        <div class="custom-select" tabindex="0" data-value="lineair" id="qpoTariffCustom">
+          <div class="selected">
+            <span class="label">Vast</span>
+            <span class="arrow">▾</span>
+          </div>
+          <div class="options">
+            <div class="option" data-value="lineair">Vast</div>
+            <div class="option" data-value="dynamisch">Dynamisch</div>
+            <div class="option" data-value="capaciteit">Capaciteitstarief</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qpo-summary">
+      <div class="qpo-summary-line"><div>Zonder EMS</div><div id="qpoBaseCost">–</div></div>
+      <div class="qpo-summary-line"><div>Met EMS</div><div id="qpoEmsCost">–</div></div>
+      <div class="qpo-summary-line qpo-winst" id="qpoWin" data-qpo-tooltip="">
+        <div>Winst</div>
+        <div style="text-align:right;">
+          <div><span id="qpoSavings">–</span></div>
+          <div style="font-size:0.75rem;color:#bbb;"><span id="qpoSavingsPct">–</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qpo-small-wrapper">
+      <p class="qpo-small">
+        Deze simulatie gebruikt gemelde praktijkdata als uitgangspunt. Na een energiemeting krijgt u gerichtere en nauwkeurigere inzichten in echte besparingen.
+      </p>
+      <div class="cta-wrap">
+    <h3 class="cta-title" >
+      Plan online afspraak
+    </h3>
+      </div>
+    </div>
+
+    <div id="qpoSuccess" class="qpo-modal">
+      <div style="font-weight:600;margin-bottom:6px;">Uw afspraak is bevestigd!</div>
+      <div>U ontvangt een afspraak bevestiging in de mail, tot snel!.</div>
+      <div style="margin-top:6px;font-size:0.75rem;">Vragen? Mail naar info@avanta.nl</div>
+    </div>
+
+    <div class="qpo-meeting-embed" id="plannerSection">
+      <!-- Start of Meetings Embed Script -->
+      <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/lorenzo-grouw?embed=true" id="qpoHubspotEmbed"></div>
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+      <!-- End of Meetings Embed Script -->
     </div>
   </div>
 
-  <div class="qpo-summary">
-    <div class="qpo-summary-line"><div>Zonder EMS</div><div id="qpoBaseCost">–</div></div>
-    <div class="qpo-summary-line"><div>Met EMS</div><div id="qpoEmsCost">–</div></div>
-    <div class="qpo-summary-line qpo-winst" id="qpoWin" data-qpo-tooltip=""><div>Winst</div><div><span id="qpoSavings">–</span> (<span id="qpoSavingsPct">–</span>)</div></div>
-  </div>
+  <div class="header-wrap" style="margin-top:32px;">
 
-  <div class="qpo-meeting-embed">
-    <!-- Start of Meetings Embed Script -->
-    <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/lorenzo-grouw?uuid=98ce37ac-0850-454e-8a24-8baa2f206ebb&embed=true" id="qpoHubspotEmbed"></div>
-    <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-    <!-- End of Meetings Embed Script -->
-  </div>
-
-  <div id="qpoSuccess" class="qpo-modal">
-    <div style="font-weight:600;margin-bottom:6px;">Uw afspraak is bevestigd!</div>
-    <div>U ontvangt uw persoonlijke analyse en Teams-link per e-mail.</div>
-    <div style="margin-top:6px;font-size:0.75rem;">Vragen? Mail naar info@avanta.nl</div>
-  </div>
-
-  <div class="qpo-small">
-    Deze simulatie is gebaseerd op gemiddelde praktijkdata. Voor exacte cijfers kunt u later echte meetprofielen laden of handmatig data vervangen.
   </div>
 </div>
 
@@ -251,24 +517,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
       ems:      [1.3,1.0,1.0,1.1,1.3,2.0,3.2,4.8,6.4,7.6,8.0,8.0,7.5,6.4,6.8,8.0,8.0,6.4,5.2,3.6,2.4,1.6,1.3,1.0]
     },
     'Kantoorgebouw': {
-      baseline: [3,2.5,2.5,2.5,3,6,12,18,22,24,24,24,23,22,22,24,22,18,10,6,4,3,2.5,2.5],
-      ems:      [2.6,2.2,2.2,2.2,2.6,5,9,13,16,17,17,17,16,15,15,16,15,13,8,5,3.5,2.8,2.2,2.2]
+      baseline: [
+        1.5,1.5,1.5,1.5,2,4,10,15,18,18,18,18,18,18,18,18,18,18,16,14,10,6,4,2.5
+      ],
+      ems: [
+        1.3,1.3,1.3,1.3,1.8,3.5,8,12,14,14,14,14,14,14,14,14,14,14,12,10,8,5,3.5,2
+      ]
     },
     'Winkelcentrum': {
-      baseline: [6,6,6,6,8,12,20,28,34,38,38,38,37,35,35,38,35,28,20,14,10,7,6,6],
-      ems:      [5.2,5.0,5.0,5.0,7,10,16,22,27,30,30,30,29,27,27,30,27,22,16,11,8,6,5,5]
+      baseline: [2,2,2,2,3,5,8,15,22,30,35,38,38,38,37,35,35,38,35,28,20,14,10,7],
+      ems:      [1.8,1.8,1.8,1.8,2.7,4.5,7,13.5,19.8,27,31.5,34.2,34.2,34.2,33.3,31.5,31.5,34.2,31.5,25.2,18,12.6,9,6.3]
     }
   };
 
   const qpoDynamicPrices = [0.22,0.20,0.18,0.18,0.17,0.16,0.15,0.14,0.13,0.15,0.20,0.25,0.30,0.32,0.35,0.33,0.28,0.26,0.24,0.23,0.22,0.21,0.20,0.19];
   const qpoTariffInfo = {
-    lineair: { price:0.26, tip:'Lineair tarief: vaste prijs per kWh.' },
+    lineair: { price:0.26, tip:'Vast tarief: vaste prijs per kWh.' },
     dynamisch: { prices:qpoDynamicPrices, tip:'Dynamisch tarief: prijs wisselt per uur.' },
     capaciteit: { monthly:3.37, tip:'Capaciteitstarief: kosten gebaseerd op maandpiek.' }
   };
 
   const qpoStep = document.getElementById('qpoStep');
-  const qpoTariffSel = document.getElementById('qpoTariff');
   const qpoBaseCostEl = document.getElementById('qpoBaseCost');
   const qpoEmsCostEl = document.getElementById('qpoEmsCost');
   const qpoSavingsEl = document.getElementById('qpoSavings');
@@ -276,13 +545,44 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const qpoWin = document.getElementById('qpoWin');
   let qpoCurrentType = 'Woning';
 
+  // Custom tariff dropdown
+  const qpoTariffCustom = document.getElementById('qpoTariffCustom');
+  const qpoTariffInfoMap = {
+    lineair: 'Lineair',
+    dynamisch: 'Dynamisch',
+    capaciteit: 'Capaciteitstarief'
+  };
+  function getCurrentTariff() {
+    return qpoTariffCustom.getAttribute('data-value');
+  }
+  function setTariff(value) {
+    qpoTariffCustom.setAttribute('data-value', value);
+    qpoTariffCustom.querySelector('.label').textContent = qpoTariffInfoMap[value];
+    qpoTariffCustom.querySelectorAll('.option').forEach(o => {
+      o.classList.toggle('selected', o.getAttribute('data-value') === value);
+    });
+    qpoUpdate();
+  }
+  qpoTariffCustom.addEventListener('click', e => {
+    e.stopPropagation();
+    qpoTariffCustom.classList.toggle('open');
+  });
+  qpoTariffCustom.querySelectorAll('.option').forEach(o => {
+    o.addEventListener('click', e => {
+      const val = o.getAttribute('data-value');
+      setTariff(val);
+      qpoTariffCustom.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', ()=> qpoTariffCustom.classList.remove('open'));
+
   const ctx = document.getElementById('qpoChart').getContext('2d');
   const gradientGrey = ctx.createLinearGradient(0,0,0,360);
-  gradientGrey.addColorStop(0,'rgba(136,136,136,0.3)');
-  gradientGrey.addColorStop(1,'rgba(136,136,136,0)');
+  gradientGrey.addColorStop(0,'rgba(136,136,136,0)');
+  gradientGrey.addColorStop(1,'rgba(136,136,136,0.15)');
   const gradientGreen = ctx.createLinearGradient(0,0,0,360);
-  gradientGreen.addColorStop(0,'rgba(76,175,80,0.4)');
-  gradientGreen.addColorStop(1,'rgba(76,175,80,0)');
+  gradientGreen.addColorStop(0,'rgba(76,175,80,0)');
+  gradientGreen.addColorStop(1,'rgba(76,175,80,0.15)');
   const qpoChart = new Chart(ctx, {
     type:'line',
     data:{
@@ -304,7 +604,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           bodyColor:'#fff',
           callbacks:{
             label(ctx){ return ctx.dataset.label+': '+ctx.parsed.y.toFixed(2)+' €'; },
-            afterBody(){ return qpoTariffInfo[qpoTariffSel.value].tip; }
+            afterBody(){ return qpoTariffInfo[getCurrentTariff()].tip; }
           }
         }
       },
@@ -322,7 +622,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const step = +qpoStep.value;
     const factor = step/5;
     const ems = baseline.map((v,i)=> v - (v - emsFull[i]) * factor);
-    const tariff = qpoTariffSel.value;
+    const tariff = getCurrentTariff();
     let baseCosts = [], emsCosts = [];
 
     if(tariff==='lineair'){
@@ -369,9 +669,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   });
   qpoStep.addEventListener('input', qpoUpdate);
-  qpoTariffSel.addEventListener('change', qpoUpdate);
 
-  // init
+  // init defaults
+  setTariff('lineair');
   qpoUpdate();
 });
 </script>
