@@ -1,1 +1,0 @@
-chatgpt, creeer de tool zoals beschreven in de prompt. Hij wordt op webflow geplaatst. Het wordt html imbed, dus je moet uitsluitend unieke noemers/namen gebruiken, die in de code van de website niet voorkomt. Zer er een prefix van qpo voor bij alles wat een unieke naam kan hebben. 
